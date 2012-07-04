@@ -5,14 +5,14 @@ public class MyGenericArrayList<T> {
 	private int data_size = 0;
 	private Object[] array = new Object[array_size];
 
-	public int add(T s) {
+	public int add(T e) {
 		if (array_size == data_size) {
 			array_size += 3;
 			Object[] new_array = new Object[array_size];
 			System.arraycopy(array, 0, new_array, 0, array.length);
 			array = new_array;
 		}
-		array[data_size++] = s;
+		array[data_size++] = e;
 
 		return data_size;
 	}
@@ -21,7 +21,7 @@ public class MyGenericArrayList<T> {
 		if (index >= data_size)
 			return null;
 
-		return array[index];
+		return (T)array[index];
 	}
 
 	public int size() {

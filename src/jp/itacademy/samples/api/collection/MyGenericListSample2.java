@@ -1,6 +1,8 @@
 package jp.itacademy.samples.api.collection;
 
-public class MyGenericListSample{
+import java.util.Iterator;
+
+public class MyGenericListSample2{
 
 	public static void main(String[] args) {
 		MyGenericArrayList<String> list = new MyGenericArrayList<>();
@@ -13,20 +15,29 @@ public class MyGenericListSample{
 		list.add("hogepiyo");
 		arrayPrint(list);
 
-		System.out.println("remove 6");
-		list.remove(6);
+		Iterator<String> itr = list.iterator();
+		
+		System.out.println("remove 2");
+		itr.next();
+		itr.next();
+		itr.next();
+		itr.remove();
 		arrayPrint(list);
-		System.out.println("remove 3");
-		list.remove(3);
+		System.out.println("next");		
+		System.out.println(itr.next());
+		System.out.println("remove 2");
+		itr.remove();
 		arrayPrint(list);
-		System.out.println("remove 0");
-		list.remove(0);
+		System.out.println("no remove");
+		itr.remove();
 		arrayPrint(list);
+
+				
 	}
 
 	static void arrayPrint(MyGenericArrayList<String> list){
-		for(int i = 0; i<list.size(); i++){
-			System.out.println("[" + i + "]" + list.get(i));
+		for (String s : list){
+			System.out.println(s);
 		}
 	}
 

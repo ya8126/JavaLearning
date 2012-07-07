@@ -7,11 +7,11 @@ public class MyGenericArrayList<T> implements Iterable<T> {
 	private int data_size = 0;
 	private Object[] array = new Object[array_size];
 
-	public Iterator iterator() {
+	public Iterator<T> iterator() {
 		return new myIterator();
 	}
 
-	private class myIterator<E> implements Iterator<E> {
+	private class myIterator implements Iterator<T> {
 
 		private int cursor = 0;
 		private int readed = -1;
@@ -25,12 +25,12 @@ public class MyGenericArrayList<T> implements Iterable<T> {
 		}
 
 		@Override
-		public E next() {
+		public T next() {
 			if (!hasNext())
 				return null;
 
 			readed = cursor;
-			return (E) array[cursor++];
+			return (T) array[cursor++];
 		}
 
 		@Override
@@ -57,6 +57,7 @@ public class MyGenericArrayList<T> implements Iterable<T> {
 		return data_size;
 	}
 
+	@SuppressWarnings("unchecked")
 	public T get(int index) {
 		if (index >= data_size)
 			return null;

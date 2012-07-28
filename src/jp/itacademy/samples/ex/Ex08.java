@@ -9,26 +9,23 @@ public class Ex08 {
 	 */
 	public static void main(String[] args) {
 		AddressMap addressMap = new AddressMap();
-		String[] commandList = {"add", "list", "search","remove"};
+		String[] commandList = {"add", "list", "search","remove","save","restore"};
 		Scanner scanner = new Scanner(System.in);
-		String command, name, tel, email;
+		String command, name, tel, email, path;
 		int i;
 		
 		while(true){
 			command = scanner.next();
-			System.out.println(command);
 			if (command.length()==0)
 				break;
 			
 			for(i = 0; i < commandList.length && !command.equals(commandList[i]); i++);
-			System.out.println(i);			
 			switch(i){
 			case 0: //add
 				name = scanner.next();
 				tel = scanner.next();
 				email = scanner.next();
 				addressMap.Add(new Address(name, tel, email));
-				System.out.println("add");
 				break;
 			case 1: //list
 				addressMap.list();
@@ -48,6 +45,20 @@ public class Ex08 {
 					System.out.println("登録されていません");
 				else
 					System.out.println(w2.getName() + "を削除しました");
+				break;
+			case 4:	//save
+				path = scanner.next();
+				if (addressMap.save(path))
+					System.out.println("保存しました");
+				else
+					System.out.println("ファイル名が誤っています");
+				break;
+			case 5: //restore
+				path = scanner.next();
+				if (addressMap.restore(path))
+					System.out.println("読み込みました");
+				else
+					System.out.println("ファイル名が誤っています");
 				break;
 			}
 		}
